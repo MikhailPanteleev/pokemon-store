@@ -1,0 +1,21 @@
+.externalWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+    
+   .wrapper {
+   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+   }
+
+   .pokemonCard{
+      min-width: 220px;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+   }
