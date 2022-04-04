@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  TextField,
-  Button,
-  CircularProgress,
-  Snackbar,
-} from '@material-ui/core';
+import { Box, TextField, Button, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+
+import Loading from '../../../../commonComponents/Loading';
 
 import styles from './style.module.scss';
 
@@ -25,7 +21,7 @@ const LoginPageLayout = ({
   return (
     <Box>
       {isLoading ? (
-        <CircularProgress />
+        <Loading />
       ) : (
         <div>
           <form className={styles.wrapper} actions='' onSubmit={handleSubmit}>

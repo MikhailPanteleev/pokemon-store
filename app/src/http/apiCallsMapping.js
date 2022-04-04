@@ -25,6 +25,7 @@ const apiCallsMapping = (action) => {
     [cartPageActions.GET_CART_REQUEST]: cartPageAPI.getCart,
     [cartPageActions.ADD_ITEM_TO_CART_REQUEST]: cartPageAPI.addToCart,
     [cartPageActions.CHANGE_CART_REQUEST]: cartPageAPI.changeCart,
+    [cartPageActions.DELETE_FROM_CART_REQUEST]: cartPageAPI.deleteFromCart,
     [userPageActions.GET_ORDER_REQUEST]: userPageAPI.getUserOrder,
     [userPageActions.ADD_ORDER_REQUEST]: userPageAPI.addUserOrder,
   };

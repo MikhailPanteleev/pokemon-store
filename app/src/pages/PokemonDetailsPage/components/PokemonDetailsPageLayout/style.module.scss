@@ -1,20 +1,33 @@
+.externalWrapper {
+  max-width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+}
 
-   .wrapper {
-      display: flex;
-      justify-content: center;
-      margin: 10px 10px 10px 10px;
-   }
-   .img{
-      width: 200px;
-      height: 200px;
-   }
-   .stats {
-      display: flex;
-   }
-   .title {
-      margin-right: 15;
-   }
-   .box{
-      margin: 5px;
-   }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
+}
 
+.img {
+  width: 200px;
+  height: 200px;
+}
+
+.stats {
+  display: flex;
+}
+
+.title {
+  margin-right: 15px;
+}
+
+.box {
+  margin: 5px;
+}
+
+.accordion {
+  text-align: center;
+  margin: 0 auto;
+}

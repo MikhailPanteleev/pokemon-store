@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { ExpandMore } from '@material-ui/icons';
 import {
@@ -7,8 +6,9 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  CircularProgress,
 } from '@material-ui/core';
+
+import Loading from '../../../../commonComponents/Loading';
 
 import styles from './style.module.scss';
 
@@ -19,11 +19,11 @@ const PokemonDetailsPageLayout = ({
   pokemon,
 }) => {
   return (
-    <Box className={styles.box}>
+    <Box>
       {isLoading ? (
-        <CircularProgress />
+        <Loading />
       ) : (
-        <div>
+        <div className={styles.externalWrapper}>
           <Box className={styles.wrapper}>
             <Box>
               <img className={styles.img} src={pokemonInfo.image}></img>
@@ -44,7 +44,7 @@ const PokemonDetailsPageLayout = ({
               Abilities
             </AccordionSummary>
             <AccordionDetails>
-              <Box>
+              <Box className={styles.accordion}>
                 {pokemonInfo.abilities?.map((ability) => (
                   <Box key={ability.title}>
                     <p>
@@ -61,7 +61,7 @@ const PokemonDetailsPageLayout = ({
               Stats
             </AccordionSummary>
             <AccordionDetails>
-              <Box>
+              <Box className={styles.accordion}>
                 {pokemonInfo.stats?.map((item) => (
                   <Box key={item.title} className={styles.stats}>
                     <p className={styles.title}>

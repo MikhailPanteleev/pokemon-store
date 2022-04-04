@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CartLayout from '../components/CartLayout';
 import { GET_CART_REQUEST } from '../actions';
-
 import { ADD_ORDER_REQUEST } from '../../UserPage/actions';
-import { CHANGE_CART_REQUEST } from '../../CartPage/actions';
+import {
+  CHANGE_CART_REQUEST,
+  DELETE_FROM_CART_REQUEST,
+} from '../../CartPage/actions';
 
 const CartPageContainer = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,13 @@ const CartPageContainer = () => {
     (state) => state.cartPage
   );
   const { userInfo } = useSelector((state) => state.auth);
+
+  const handlePokemonDelete = useCallback(
+    (pokemon) => {
+      dispatch(DELETE_FROM_CART_REQUEST(pokemon));
+    },
+    [dispatch]
+  );
 
   const handlePokemonIncrement = useCallback(
     (pokemon) => {
@@ -64,7 +73,7 @@ const CartPageContainer = () => {
     window.location.reload();
   };
 
-  const orderHeaders = ['Image', 'Prise', 'quantity', 'Total price', 'Delete'];
+  const orderHeaders = ['Image', 'Prise', 'Quantity', 'Total price', 'Delete'];
 
   return (
     <CartLayout
@@ -73,6 +82,7 @@ const CartPageContainer = () => {
       itemsList={itemsList}
       handlePokemonIncrement={handlePokemonIncrement}
       handlePokemonDecrement={handlePokemonDecrement}
+      handlePokemonDelete={handlePokemonDelete}
       handleAddOrder={handleAddOrder}
       handleClose={handleClose}
       open={open}

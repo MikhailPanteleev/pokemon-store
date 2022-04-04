@@ -74,6 +74,28 @@ const cartPageReducer = handleActions(
       isLoading: false,
       errors: payload.response,
     }),
+    [actions.DELETE_FROM_CART_REQUEST]: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    [actions.DELETE_FROM_CART_SUCCESS]: (state, { payload }) => {
+      const { cartState, removedItemId } = payload.response;
+      const copy = [...state.itemsList];
+      const findItemIndex = copy.findIndex((item) => item.id === removedItemId);
+      copy.splice(findItemIndex, 1);
+      return {
+        ...state,
+        isLoading: false,
+        itemsList: copy,
+        quantity: cartState.quantity,
+        totalPrice: cartState.totalPrice,
+      };
+    },
+    [actions.DELETE_FROM_CART_FAIL]: (state, { payload }) => ({
+      ...state,
+      isLoading: false,
+      errors: payload.response,
+    }),
   },
   defaultState
 );

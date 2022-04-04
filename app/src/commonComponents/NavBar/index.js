@@ -1,26 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {
-  AppBar,
-  IconButton,
-  Button,
-  Badge,
-  Box,
-  Toolbar,
-} from '@material-ui/core';
+import { IconButton, Button, Badge, Box, Toolbar } from '@material-ui/core';
 import { AccountBox, ShoppingCart, ExitToApp } from '@material-ui/icons';
 
-import styles from './style.module.scss';
 import { ROUTES } from '../../routes/routeNames';
+
+import styles from './style.module.scss';
 
 const NavBar = () => {
   const { quantity } = useSelector((state) => state.cartPage);
   return (
-    <Box>
-      <AppBar position='static' color='inherit'>
+    <div>
+      <Box>
         <Toolbar variant='dense'>
-          <Link to={ROUTES.POKEMONS_PAGE}>
+          <Link to={ROUTES.POKEMONS_PAGE} className={styles.link}>
             <Button variant='filled' color='primary'>
               Pokemons
             </Button>
@@ -50,8 +44,8 @@ const NavBar = () => {
             </IconButton>
           </Box>
         </Toolbar>
-      </AppBar>
-    </Box>
+      </Box>
+    </div>
   );
 };
 

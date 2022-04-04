@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, CircularProgress } from '@material-ui/core';
+import { Box, Button, ButtonGroup } from '@material-ui/core';
 
 import Pagination from '../../../../commonComponents/Pagination';
+import Loading from '../../../../commonComponents/Loading';
 
 import styles from './style.module.scss';
 
@@ -17,7 +18,7 @@ const PokemonsPageLayout = ({
   return (
     <Box className={styles.externalWrapper}>
       {isLoading ? (
-        <CircularProgress />
+        <Loading />
       ) : (
         <div>
           <Box className={styles.wrapper}>
@@ -40,17 +41,23 @@ const PokemonsPageLayout = ({
                     Price: <strong>{pokemon.price}</strong> coins
                   </p>
                   <div>
-                    <Button onClick={() => handleGoToDetails(pokemon.id)}>
-                      Watch more
-                    </Button>
-                    <Button onClick={() => handleAddPokemonCart(pokemon)}>
-                      Add to cart
-                    </Button>
+                    <ButtonGroup
+                      size='small'
+                      variant='outlined'
+                      aria-label='outlined button group'
+                    >
+                      <Button onClick={() => handleGoToDetails(pokemon.id)}>
+                        Watch more
+                      </Button>
+                      <Button onClick={() => handleAddPokemonCart(pokemon)}>
+                        Add to cart
+                      </Button>
+                    </ButtonGroup>
                   </div>
                 </div>
               );
             })}
-            <Box>
+            <Box className={styles.pagination}>
               <Pagination
                 onPageChange={handlePageChange}
                 pageCount={20}

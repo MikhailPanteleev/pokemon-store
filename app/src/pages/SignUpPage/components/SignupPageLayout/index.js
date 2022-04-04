@@ -8,10 +8,11 @@ import {
   FormControl,
   Select,
   MenuItem,
-  CircularProgress,
   InputLabel,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+
+import Loading from '../../../../commonComponents/Loading';
 
 import styles from './style.module.scss';
 
@@ -29,7 +30,7 @@ const SignupPageLayout = ({
   return (
     <Box>
       {isLoading ? (
-        <CircularProgress />
+        <Loading />
       ) : (
         <div>
           <form actions='' onSubmit={handleSubmit} className={styles.wrapper}>

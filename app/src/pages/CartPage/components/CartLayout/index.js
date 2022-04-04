@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 import {
@@ -21,17 +20,19 @@ const CartLayout = ({
   itemsList,
   handlePokemonIncrement,
   handlePokemonDecrement,
+  handlePokemonDelete,
   handleAddOrder,
   handleClose,
   open,
   orderHeaders,
+  isLoading,
 }) => {
   return (
-    <Box>
-      <Box>
-        <h1>CART</h1>
-      </Box>
-      <Box>
+    <div>
+      <Box className={styles.container}>
+        <Box>
+          <h1>CART</h1>
+        </Box>
         <TableContainer>
           <Table>
             <TableHead>
@@ -51,45 +52,50 @@ const CartLayout = ({
                   </TableCell>
                   <TableCell>{item.price}</TableCell>
                   <TableCell>
-                    <Box className={styles.inputWrapper}>
+                    <Box className={styles.input}>
                       <Button onClick={() => handlePokemonDecrement(item)}>
                         -
                       </Button>
                       <Box>{item.quantity}</Box>
-                      <Button onClick={() => handlePokemonIncrement(item)}>
+                      <Button
+                        size='string'
+                        onClick={() => handlePokemonIncrement(item)}
+                      >
                         +
                       </Button>
                     </Box>
                   </TableCell>
                   <TableCell>{item.price * item.quantity}</TableCell>
                   <TableCell>
-                    <Button>delete</Button>
+                    <Button onClick={() => handlePokemonDelete(item.id)}>
+                      delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <Box>
+          <h3>TOTAL PRICE: {totalPrice}</h3>
+        </Box>
+        <Box>
+          <Button
+            type='submit'
+            variant='filled'
+            color='primary'
+            children='CONFIRM'
+            onClick={() => handleAddOrder()}
+            disabled={totalPrice === 0}
+          />
+        </Box>
+        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity='success'>
+            Your order has been successfully created!
+          </Alert>
+        </Snackbar>
       </Box>
-      <Box>
-        <h3>TOTAL PRICE: {totalPrice}</h3>
-      </Box>
-      <Box>
-        <Button
-          type='submit'
-          variant='filled'
-          color='primary'
-          children='CONFIRM'
-          onClick={() => handleAddOrder()}
-          disabled={totalPrice === 0}
-        />
-      </Box>
-      <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity='success'>
-          Your order has been successfully created!
-        </Alert>
-      </Snackbar>
-    </Box>
+    </div>
   );
 };
 
@@ -107,6 +113,7 @@ CartLayout.propTypes = {
   ),
   handlePokemonIncrement: PropTypes.func.isRequired,
   handlePokemonDecrement: PropTypes.func.isRequired,
+  handlePokemonDelete: PropTypes.func.isRequired,
   handleAddOrder: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,

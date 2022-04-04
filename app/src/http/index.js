@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { LOCAL_STORAGE_KEY } from '../constants/localStorageKeys';
 
-const baseURL = 'https://demo-api.it-shatle.by';
+const baseURL = 'https://it-shatle-demo-api.herokuapp.com/';
 
 const config = {
   baseURL,
